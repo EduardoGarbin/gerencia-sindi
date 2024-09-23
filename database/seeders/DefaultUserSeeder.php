@@ -20,7 +20,7 @@ class DefaultUserSeeder extends Seeder
             'email' => config('user.email'),
         ], [
             'name' => config('user.name'),
-            'password' => Hash::make('user.password'),
+            'password' => Hash::make(config('user.password')),
         ]);
     }
 }

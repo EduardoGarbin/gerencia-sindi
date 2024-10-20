@@ -16,8 +16,8 @@ class CondominiumRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'cnpj' => 'nullable|string|unique:condominiums,cnpj|required_without:cpf',
-            'cpf' => 'nullable|string|unique:condominiums,cpf|required_without:cnpj',
+            'cnpj' => 'nullable|string|unique:condominiums,cnpj,' . $this->route('condominium'),
+            'cpf' => 'nullable|string|unique:condominiums,cpf,' . $this->route('condominium'),
             'blocks' => 'required|integer',
             'units' => 'required|integer',
             'construction_date' => 'nullable|date',

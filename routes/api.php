@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CondominiumController;
+use App\Http\Controllers\ResidentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::apiResource('condominiums', CondominiumController::class);
+Route::apiResource('residents', ResidentController::class);

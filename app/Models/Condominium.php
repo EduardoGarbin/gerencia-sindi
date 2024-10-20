@@ -32,4 +32,9 @@ class Condominium extends Model
         'total_area' => 'decimal:2',
         'status' => 'boolean',
     ];
+
+    public function residents()
+    {
+        return $this->hasMany(Resident::class);
+    }
 }

@@ -1,16 +1,21 @@
-import Form from "./components/login/Form";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-full flex items-center justify-center lg:w-1/2">
-        <Form />
-      </div>
-      <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200">
-        <div className="w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-bounce"></div>
-        <div className="w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg"></div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <Notifications position="top-right" />
+        <div className="flex w-full h-screen">
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/vabaan" element={<h1>Vabaan</h1>} />
+          </Routes>
+        </div>
+      </MantineProvider>
+    </BrowserRouter>
   );
 }
 

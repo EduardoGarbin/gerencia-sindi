@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::apiResource('condominiums', CondominiumController::class);
-    Route::apiResource('residents', ResidentController::class);
-});
+Route::apiResource('condominiums', CondominiumController::class);
+Route::apiResource('residents', ResidentController::class);
+// Route::group(['middleware' => 'jwt.auth'], function () {
+// });

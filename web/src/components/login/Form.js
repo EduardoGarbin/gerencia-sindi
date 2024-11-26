@@ -13,7 +13,7 @@ export default function Form() {
     showNotification(response.color, response.title, response.message);
     
     if (response.status) {
-      navigate("/vabaan");
+      navigate("/dashboard");
     }
   };
 

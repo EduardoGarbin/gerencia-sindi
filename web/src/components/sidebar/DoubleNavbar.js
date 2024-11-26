@@ -4,7 +4,7 @@ import {
   IconBuildings,
   IconCalendarStats,
   IconGauge,
-  IconUsers
+  IconUsers,
 } from "@tabler/icons-react";
 import { Tooltip, UnstyledButton } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
@@ -37,7 +37,7 @@ export default function DoubleNavbar() {
         className={classes.mainLink}
         data-active={link.label === active || undefined}
       >
-        <link.icon size={22} stroke={1.5} />
+        <link.icon size={25} stroke={1.5} />
       </UnstyledButton>
     </Tooltip>
   ));

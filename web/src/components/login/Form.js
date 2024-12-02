@@ -11,7 +11,7 @@ export default function Form() {
   const handleSubmit = async () => {
     const response = await loginUser({ email, password });
     showNotification(response.color, response.title, response.message);
-    
+
     if (response.status) {
       navigate("/dashboard");
     }

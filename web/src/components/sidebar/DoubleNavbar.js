@@ -11,9 +11,9 @@ import { MantineLogo } from "@mantinex/mantine-logo";
 import classes from "./DoubleNavbar.module.css";
 
 const mainLinksMockdata = [
-  { icon: IconGauge, label: "Dashboard", path: "/" },
-  { icon: IconBuildings, label: "Condomínios", path: "/" },
-  { icon: IconUsers, label: "Moradores", path: "/" },
+  { icon: IconGauge, label: "Dashboard", path: "/dashboard" },
+  { icon: IconBuildings, label: "Condomínios", path: "/condominium" },
+  { icon: IconUsers, label: "Moradores", path: "/resident" },
   { icon: IconCalendarStats, label: "Calendário", path: "/" },
 ];
 

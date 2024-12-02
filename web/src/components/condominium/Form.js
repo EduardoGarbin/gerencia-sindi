@@ -1,10 +1,18 @@
+import React, { useEffect } from "react";
 import { Button, Group, TextInput, NumberInput, Checkbox } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DatePickerInput } from "@mantine/dates";
+import {
+  createCondominium,
+  updateCondominium,
+  fetchCondominiumById,
+} from "../../services/condominiumService";
+import { showNotification } from "../../utils/notifications";
+import { useParams } from "react-router-dom";
 
-export default function Form() {
+export default function Form({ isEditing = false, onSuccess }) {
+  const { id: condominiumId } = useParams();
   const form = useForm({
-    mode: "uncontrolled",
     initialValues: {
       name: "",
       address: "",
@@ -21,9 +29,65 @@ export default function Form() {
     },
   });
 
+  useEffect(() => {
+    if (isEditing && condominiumId) {
+      loadCondominium();
+    }
+  }, [isEditing, condominiumId]);
+
+  const loadCondominium = async () => {
+    try {
+      const response = await fetchCondominiumById(condominiumId);
+
+      if (response.status) {
+        const data = response.data;
+
+        form.setValues({
+          name: data.name || "",
+          address: data.address || "",
+          cnpj: data.cnpj || "",
+          cpf: data.cpf || "",
+          blocks: data.blocks || 0,
+          units: data.units || 0,
+          construction_date: data.construction_date
+            ? new Date(data.construction_date)
+            : null,
+          manager_name: data.manager_name || "",
+          manager_contact: data.manager_contact || "",
+          total_area: parseFloat(data.total_area) || 0,
+          status: data.status !== undefined ? data.status : true,
+          management_start_date: data.management_start_date
+            ? new Date(data.management_start_date)
+            : null,
+        });
+      } else {
+        showNotification(response.color, response.title, response.message);
+      }
+    } catch (error) {
+      console.error("Erro ao carregar condomínio", error);
+    }
+  };
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = isEditing
+        ? await updateCondominium(condominiumId, values)
+        : await createCondominium(values);
+
+      showNotification(response.color, response.title, response.message);
+
+      if (response.status && onSuccess) {
+        onSuccess();
+      }
+    } catch (error) {
+      console.error("Erro na operação", error);
+      showNotification("red", "Erro!", "Erro ao salvar o condomínio.");
+    }
+  };
+
   return (
     <form
-      onSubmit={form.onSubmit((values) => console.log(values))}
+      onSubmit={form.onSubmit(handleSubmit)}
       className="w-full h-full flex flex-col gap-y-4"
     >
       <TextInput
@@ -108,7 +172,7 @@ export default function Form() {
 
       <div className="mt-auto">
         <Group justify="flex-end" mt="md">
-          <Button type="submit">Enviar</Button>
+          <Button type="submit">{isEditing ? "Atualizar" : "Criar"}</Button>
         </Group>
       </div>
     </form>

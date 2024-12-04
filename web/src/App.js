@@ -9,6 +9,7 @@ import DataListCondominium from "./components/condominium/DataList";
 import FormResident from "./components/resident/Form";
 import DataListResident from "./components/resident/DataList";
 import Dashboard from "./components/dashboard/Dashboard";
+import Page from "./components/task/Page";
 
 function App() {
   return (
@@ -72,6 +73,14 @@ function App() {
                 element={
                   <MainLayout>
                     <FormResident isEditing={true} />
+                  </MainLayout>
+                }
+              />
+              <Route
+                path="task/*"
+                element={
+                  <MainLayout>
+                    <Page />
                   </MainLayout>
                 }
               />

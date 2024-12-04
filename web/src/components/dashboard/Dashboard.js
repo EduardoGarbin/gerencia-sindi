@@ -2,8 +2,6 @@ import React from "react";
 import CondominiumStatusChart from "./CondominiumStatusChart";
 import BlocksChart from "./BlocksChart";
 import ResidentsStatusChart from "./ResidentsStatusChart";
-// import BlocksChart from "./BlocksChart";
-// import UnitsChart from "./UnitsChart";
 
 export default function Dashboard() {
   return (

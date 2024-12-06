@@ -14,7 +14,7 @@ const mainLinksMockdata = [
   { icon: IconGauge, label: "Dashboard", path: "/dashboard" },
   { icon: IconBuildings, label: "Condomínios", path: "/condominium" },
   { icon: IconUsers, label: "Moradores", path: "/resident" },
-  { icon: IconCalendarStats, label: "Calendário", path: "/task" },
+  { icon: IconCalendarStats, label: "Planejamento", path: "/task" },
 ];
 
 export default function DoubleNavbar() {

@@ -19,7 +19,7 @@ const mockTasks = [
   },
 ];
 
-export default function List() {
+export default function DataList() {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState(mockTasks);
 
@@ -29,30 +29,36 @@ export default function List() {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between mb-4">
-        <h1 className="text-xl font-bold">Tarefas do Síndico</h1>
-        <Button color="green" onClick={() => navigate("/task/create")}>
-          Adicionar Tarefa
+      <div className="flex justify-between">
+        <h1 className="text-xl font-bold mb-4">Lista de Tarefas</h1>
+        <Button
+          color="green"
+          size="xs"
+          onClick={() => navigate("/task/create")}
+        >
+          Adicionar
         </Button>
       </div>
       <Table highlightOnHover withColumnBorders verticalSpacing="md">
-        <thead>
-          <tr>
-            <th>Título</th>
-            <th>Data de Início</th>
-            <th>Data de Término</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th>Título</Table.Th>
+            <Table.Th>Data de Início</Table.Th>
+            <Table.Th>Data de Término</Table.Th>
+            <Table.Th>Status</Table.Th>
+            <Table.Th>Ações</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
           {tasks.map((task) => (
-            <tr key={task.id}>
-              <td>{task.title}</td>
-              <td>{task.start_date}</td>
-              <td>{task.end_date}</td>
-              <td>{task.status}</td>
-              <td>
+            <Table.Tr key={task.id}>
+              <Table.Td>{task.title}</Table.Td>
+              <Table.Td>{task.start_date}</Table.Td>
+              <Table.Td>{task.end_date}</Table.Td>
+              <Table.Td>
+                {task.status === "pendente" ? "Pendente" : "Concluído"}
+              </Table.Td>
+              <Table.Td>
                 <Button
                   color="blue"
                   size="xs"
@@ -63,15 +69,15 @@ export default function List() {
                 <Button
                   color="red"
                   size="xs"
-                  onClick={() => handleDelete(task.id)}
                   ml="sm"
+                  onClick={() => handleDelete(task.id)}
                 >
                   Excluir
                 </Button>
-              </td>
-            </tr>
+              </Table.Td>
+            </Table.Tr>
           ))}
-        </tbody>
+        </Table.Tbody>
       </Table>
     </div>
   );
